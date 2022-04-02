@@ -17,7 +17,7 @@ for await (const event of events) {
 	if (quit_phrases.includes(event)) Deno.exit();
 	if (typeof event === "string") continue;
 	
-	const {kind, paths: [path]} = event;
+	const path = event.paths[0];
 
 	if (extname(path) === ".md") {
 		let proc = Deno.run({
