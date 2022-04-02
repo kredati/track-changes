@@ -7,31 +7,34 @@ const watcher = Deno.watchFs(["./"]);
 const events = new MuxAsyncIterator();
 
 events.add(watcher);
-events.add(readLines(Deno.stdin));
+//events.add(readLines(Deno.stdin));
 
 const quit_phrases = ["close", "quit", "exit", "q"];
 
 console.log("Watching for changes in .md files.");
 
-for await (const event of events) {
+for await (const event of watcher) {
 	if (quit_phrases.includes(event)) Deno.exit();
 	if (typeof event === "string") continue;
 	
 	const path = event.paths[0];
 
+	console.log(path);
+
 	if (extname(path) === ".md") {
-		let proc = Deno.run({
-			cmd: ["git", "add", path]
-		});
+		console.log(`Change detected in ${path}.`)
+		// let proc = Deno.run({
+		// 	cmd: ["git", "add", path]
+		// });
 
-		await proc.status();
+		// await proc.status();
 
-		proc = Deno.run({
-			cmd: ["git", "commit", "-m", `track-changes: Update ${path}`]
-		});
+		// proc = Deno.run({
+		// 	cmd: ["git", "commit", "-m", `track-changes: Update ${path}`]
+		// });
 
-		await proc.status();
+		// await proc.status();
 
-		console.log("");
+		// console.log("");
 	}
 }
