@@ -7,4 +7,4 @@ I am a new line
 I am another new line
 
 
-I am yet another new thing
+I am yet another new 
