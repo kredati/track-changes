@@ -1,3 +1,3 @@
 foo bar baz
 
-bar quux 
+bar quux foo
