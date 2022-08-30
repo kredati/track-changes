@@ -11,7 +11,7 @@ events.add(readLines(Deno.stdin));
 
 const quit_phrases = ["close", "quit", "exit", "q"];
 
-console.log("Watching for changes in .md files.");
+console.log("Watching for changes in .md and .xit files.");
 console.log("To quit, type 'close', 'quit', 'q', or 'exit'.");
 
 for await (const event of events) {
@@ -21,7 +21,9 @@ for await (const event of events) {
 
   const path = event.paths[0];
 
-  if (extname(path) === ".md") {
+  const ext = extname(path)
+
+  if (ext === ".md" || ext === ".xit") {
     let now = new Date(Date.now());
     console.log(`Detected change in ${path}. Committing change at ${now.toLocaleString()}`);
 
