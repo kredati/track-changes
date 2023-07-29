@@ -1,4 +1,4 @@
-import { readLines } from "https://deno.land/std/io/bufio.ts";
+import { readLines } from "https://deno.land/std@0.178.0/io/read_lines.ts"
 import { MuxAsyncIterator } from "https://deno.land/std/async/mux_async_iterator.ts";
 import { extname } from "https://deno.land/std/path/mod.ts";
 
